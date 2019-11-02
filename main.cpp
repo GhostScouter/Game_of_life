@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
+
     int static_array[HEIGHT][WIDTH];
     int dynamic_d[900];
 
