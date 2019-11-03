@@ -6,14 +6,26 @@
 
 class zellulaerer_automat
 {
+private:
+
+    int *koor_feld_alt;
+    int *koor_feld_neu;
+
+    int groese;
+    int neue_hoehe;
+    int neue_breite;
+
+
 public:
     zellulaerer_automat();
 
-    int feldgroese(int a);
+    int feldgroese();
     int setze_feld();
     int veraendere_feld();
-
     int evolution();
+    int zeige_feld();
+
+    ~zellulaerer_automat();
 
 
 };

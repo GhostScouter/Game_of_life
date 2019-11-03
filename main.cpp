@@ -7,10 +7,13 @@ using namespace std;
 
 int main()
 {
-    int a = 5;
 
     zellulaerer_automat test;
-    test.feldgroese(a);
+    test.feldgroese();
+    test.setze_feld();
+    test.zeige_feld();
+    test.veraendere_feld();
+    test.zeige_feld();
 
     int static_array[HEIGHT][WIDTH];
     int *dynamic_d = new int[900];
