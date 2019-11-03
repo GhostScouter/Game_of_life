@@ -1,11 +1,21 @@
+#include <iostream>
 #ifndef CLASS_1_H
 #define CLASS_1_H
 
 
-class class_1
+
+class zellulaerer_automat
 {
 public:
-    class_1();
+    zellulaerer_automat();
+
+    int feldgroese(int a);
+    int setze_feld();
+    int veraendere_feld();
+
+    int evolution();
+
+
 };
 
 #endif // CLASS_1_H

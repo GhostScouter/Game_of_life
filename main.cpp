@@ -1,4 +1,5 @@
 #include "static_array_int.h"
+#include "class_1.h"
 
 
 
@@ -6,6 +7,9 @@ using namespace std;
 
 int main()
 {
+    int a = 5;
+
+    zellulaerer_automat::feldgroese(a);
 
     int static_array[HEIGHT][WIDTH];
     int dynamic_d[900];
