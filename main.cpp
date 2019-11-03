@@ -9,10 +9,11 @@ int main()
 {
     int a = 5;
 
-    zellulaerer_automat::feldgroese(a);
+    zellulaerer_automat test;
+    test.feldgroese(a);
 
     int static_array[HEIGHT][WIDTH];
-    int dynamic_d[900];
+    int *dynamic_d = new int[900];
 
     int while_input;
     bool while_tf = true;
