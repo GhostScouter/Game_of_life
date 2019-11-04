@@ -85,7 +85,12 @@ int zellulaerer_automat::veraendere_feld()
 
 int zellulaerer_automat::evolution()
 {
+    int n;
 
+    for (n=0; n<(neue_hoehe*neue_breite); n++)
+    {
+
+    }
 }
 
 int zellulaerer_automat::zeige_feld()
