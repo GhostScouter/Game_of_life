@@ -10,79 +10,81 @@ zellulaerer_automat::zellulaerer_automat()
 
 int zellulaerer_automat::feldgroese()
 {
-    int groese = 900;
+    int groese = 900;               // standard field size, for dialogue purposes (line.18)
 
-    bool while_groese = false;
-    int input_feldaenderung;
+    bool while_groese = false;      // while-loop break variable
+    int input_feldaenderung;        // user input variable defninition (l.24)
 
     cout << "Wenn sie keine Aenderungen an der Feldgroese vernehmen wollen, wird ein Standartfeld der groese"<< groese<<"verwendet.\n";
     cout << "Hoehe und Breite veraendern(1)\n";
     cout << "nichts verandern(2)\n";
 
-    while (while_groese == false)
+    while (while_groese == false)       // initiates while-loop, to secure the user input
     {
-        cin >> input_feldaenderung;
-        if (input_feldaenderung == 1)
+        cin >> input_feldaenderung;     // user input on whether they like to change the array size or not
+        if (input_feldaenderung == 1)   // they do
         {
             while (true)
             {
-                cout << "neue Hoehe\n";
-                cin >> neue_hoehe;
-                cout << "neue breite\n";
-                cin >> neue_breite;
-                if (neue_hoehe > 0 && neue_breite > 0)
+                cout << "neue Hoehe\n";     // dialogue about new width
+                cin >> neue_hoehe;          // users new width
+                cout << "neue breite\n";    // dialogue about new height
+                cin >> neue_breite;         // users new height
+                if (neue_hoehe > 0 && neue_breite > 0) // quick check on input
                 {
-                    break;
+                    break;                  // exits while-loop (l.27)
                 }
             }
-            delete koor_feld_alt;
-            koor_feld_alt = new int[(neue_hoehe*neue_breite)];
+            delete koor_feld_alt;           // deletes the old field with old size
+            koor_feld_alt = new int[(neue_hoehe*neue_breite)];  // initiates new one with new size
 
-            while_groese = true;
+            while_groese = true;            // exits while-loop (l.22)
         }
-        else if (input_feldaenderung == 2)
+        else if (input_feldaenderung == 2)  // if the user does not want to change the field size
         {
-            while_groese = true;
-            neue_hoehe = 30;
-            neue_breite = 30;
+            while_groese = true;            // exits the while-loop (l.22)
+            neue_hoehe = 30;                // sets default size values of 30x30
+            neue_breite = 30;               //                "
         }
-        else
+        else                                // if the user entered something else than 1 or 2 (l.24)
         {
-            cout << "Ungueltige Eingabe\n";
+            cout << "Ungueltige Eingabe\n"; // tells the user he did something stupid
         }
     }
 }
 
-int zellulaerer_automat::setze_feld()
+int zellulaerer_automat::setze_feld()        // allow the user to enter each cell's status
 {
-    int n,m;
-    int zustand;
+    int n,m;                                 // initiates 2 varibles for the loops in l.61 and l. 63
+    int zustand;                             // this variable will save the cell status (alive or dead)
 
-    for (n=0; n<neue_hoehe; n++)
+    for (n=0; n<neue_hoehe; n++)             // for-loop through the height of the array - runs from 0 to 29 (on default)
     {
-        for (m=0; m<neue_breite; m++)
+        for (m=0; m<neue_breite; m++)        // for-loop through the width of the array - runs from 0 to 29 (on default)
         {
-            cout << "soll Zelle " << n << " " << m << " Leben(1) oder Tod(0) sein\n";
-            cin >> zustand;
-            koor_feld_alt[(n*neue_breite +m)] = zustand;
+            cout << "soll Zelle " << n << " " << m << " Leben(1) oder Tod(0) sein\n";       // asks the user about the cell status for each cell
+            cin >> zustand;                                                                 // lets them enter the status
+            koor_feld_alt[(n*neue_breite +m)] = zustand;                                    // decides where the new input will be saved
+                                                                         // since the array is just one long line of numbers and not "really" 2-d
         }
 
     }
 
 }
 
-int zellulaerer_automat::veraendere_feld()
+int zellulaerer_automat::veraendere_feld()      // allows the user to change a specific field's status
 {
-    int height_change;
-    int width_change;
+    int height_change;                          // both inputs regarding the cell's position
+    int width_change;                           //                    "
 
-    cout << "Welches Feld wollen sie ändern?\n";
+    cout << "Welches Feld wollen sie ändern?\n";        // dialogue about which cell to change
 
-    cin >> height_change >> width_change;
+    cin >> height_change >> width_change;               // both inputs
     koor_feld_alt[height_change*neue_breite+width_change] = (koor_feld_alt[height_change*neue_breite+width_change] +1) % 2;
+    // finds the correct cell and increases the value of it by 1. Then applies % 2 onto it, so its status is either 0 or 1
 }
 
-int zellulaerer_automat::evolution()
+int zellulaerer_automat::evolution()            // goes through all cells, checks their neighbours,
 {
     int n, j;
     int zellen_status;

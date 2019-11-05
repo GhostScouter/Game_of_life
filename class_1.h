@@ -4,28 +4,29 @@
 
 
 
-class zellulaerer_automat
+class zellulaerer_automat // name of the class which will be key for our program and run the automat
 {
-private:
+private:                // defining various variables for class-wide use
 
-    int *koor_feld_alt;
-    int *koor_feld_neu;
+    int *koor_feld_alt; // this is the field on which the evolution will be applied to
+    int *koor_feld_neu; // this is the output field
 
-    int groese;
-    int neue_hoehe;
-    int neue_breite;
+    int groese;         // standard array size for evol.automat, only for dialogue purposes
+    int neue_hoehe;     // heigth of our 2-d array
+    int neue_breite;    // width of our 2-d array
 
 
-public:
-    zellulaerer_automat();
+public:     // public funtions to operate with
 
-    int feldgroese();
-    int setze_feld();
-    int veraendere_feld();
-    int evolution();
-    int zeige_feld();
+    zellulaerer_automat();  //
 
-    ~zellulaerer_automat();
+    int feldgroese();       // custominzing the array size
+    int setze_feld();       // manual input of each cell
+    int veraendere_feld();  // specific cell value changing
+    int evolution();        // the main part =)
+    int zeige_feld();       // prints the array
+
+    ~zellulaerer_automat(); // deconstructor
 
 
 };
