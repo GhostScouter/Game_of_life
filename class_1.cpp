@@ -301,7 +301,7 @@ int zellulaerer_automat::evolution()
         else if (n>0 && n<(neue_breite-1)) // obere Zeile (ohne Ecken)
         {
 
-            for (j = (neue_breite*neue_hoehe-neue_breite+n-2); j < (neue_breite*neue_hoehe-neue_breite+n+1); j++)
+            for (j = (neue_breite*neue_hoehe-neue_breite+n-1); j < (neue_breite*neue_hoehe-neue_breite+n+2); j++) // für samuel: war beim ersten n-2 bis n+1 habs auf n-1 bis n+2 geändert
             {
                 if (koor_feld_alt[j] == 1)
                 {
