@@ -7,8 +7,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define WIDTH 30    // Breite der statischen Liste
-#define HEIGHT 30   // Höhe der statischen Liste
+#define WIDTH 30    // width of the static list (main.cpp, l. 22)
+#define HEIGHT 30   // height of the static list (main.cpp, l. 22)
 
 
 

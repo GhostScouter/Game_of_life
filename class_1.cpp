@@ -86,56 +86,58 @@ int zellulaerer_automat::veraendere_feld()      // allows the user to change a s
 
 
 
-    while (feld_aenderung == 1)
+    while (feld_aenderung == 1)     // will loop the question
     {
-        cout << "Wollen sie Felder ändern?(Ja = 1, Nein = 0)\n";
-        cin >> feld_aenderung;
-        if (feld_aenderung == 1)
+        cout << "Wollen sie Felder ändern?(Ja = 1, Nein = 0)\n";        // asks the user if they like to change another cell
+        cin >> feld_aenderung;                                          // awaits the user's input
+        if (feld_aenderung == 1)                                        // if they like to
         {
-            cout << "Welches Feld wollen sie ändern?\n";
-            cin >> height_change >> width_change;
-            koor_feld_alt[height_change*neue_breite+width_change] = (koor_feld_alt[height_change*neue_breite+width_change] +1) % 2;
+            cout << "Welches Feld wollen sie ändern?\n";                // asks which cell they like to change
+            cin >> height_change >> width_change;                       // awaits the inputs
+            koor_feld_alt[height_change*neue_breite+width_change] = (koor_feld_alt[height_change*neue_breite+width_change] +1) % 2;     // <=> l.85
         }
     }
 }
 
 int zellulaerer_automat::evolution()            // goes through all cells, checks their neighbours,
 {
-    int n, j;
-    int counter = 0;
+    int n, j;                                   // initiates 2 variables for loop purposes
+    int counter = 0;                            // this variable counts the amount of neighbours, it gets resetted for each cell (i.e. l. 159)
 
-    delete koor_feld_neu;
-    koor_feld_neu = new int[(neue_hoehe*neue_breite)];
+    delete koor_feld_neu;                                   // deletes the new field, only useful after the first evolution, else this is empty
+    koor_feld_neu = new int[(neue_hoehe*neue_breite)];      // creates a new field with the size parameters, taken in l. 30 or l.46
 
-    for (n=0; n<(neue_hoehe*neue_breite); n++) // start der kontrolle, wie Zellen auf Evolution reagieren
+    for (n=0; n<(neue_hoehe*neue_breite); n++) // starts the evolution, runs through the entire array, the following if-statements are executed for each cell
     {
-        if (n == 0) // ecke links oben
+        // we are now trying to find out where our cell 2-d location is, there are 9 different positions possible
+        if (n == 0) // checks if we are in the top left corner
         {
 
-            if (koor_feld_alt[neue_hoehe*neue_breite-1] == 1) // links oben von "ecke links oben" -> ecke rechts unten
+            if (koor_feld_alt[neue_hoehe*neue_breite-1] == 1) // checks the top left corner of our cell, which is the botton right one
             {
-                counter ++;
+                counter ++;         // if the value of checked cell is 1 the counter increases by one, since we just found one neighbour
             }
-            for (j = (neue_hoehe*neue_breite-neue_breite); j < ((neue_hoehe*neue_breite-neue_breite)+2); j++) // oben und rechts oben von "ecke links oben" -> ecke links unten und rechts von ecke links unten
+            for (j = (neue_hoehe*neue_breite-neue_breite); j < ((neue_hoehe*neue_breite-neue_breite)+2); j++) // checks the top middle and top right of our cell
             {
-                if (koor_feld_alt[j] == 1)
+                // in order to save some code, we decided to use for-loops for every successive cells that are checked
+                if (koor_feld_alt[j] == 1)          // for each of the 2 checked cells
                 {
-                    counter ++;
+                    counter ++; // if the value of either cell is 1 the counter increases by one, since we just found one neighbour
                 }
             }
-            if (koor_feld_alt[neue_breite-1] == 1)  // links von "Ecke links oben" -> Ecke rechts oben
+            if (koor_feld_alt[neue_breite-1] == 1)  // now we are just checking all surrounding cells
             {
                 counter ++;
             }
-            if (koor_feld_alt[1] == 1) // rechts von "Ecke links oben"
+            if (koor_feld_alt[1] == 1)
             {
                 counter ++;
             }
-            if (koor_feld_alt[2*neue_breite-1] == 1) // links unten von "Ecke links oben" -> unter Ecke rechts oben
+            if (koor_feld_alt[2*neue_breite-1] == 1)
             {
                 counter ++;
             }
-            for (j = (neue_breite); j < (neue_breite+2); j++) // unter rechts unter "Ecke links oben"
+            for (j = (neue_breite); j < (neue_breite+2); j++)
             {
                 if (koor_feld_alt[j] == 1)
                 {
@@ -143,23 +145,23 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 }
             }    
 
-            // alive or dead
-            if (counter == 3)
+            // we are now deciding how to deal with the given cell depending on its neighbor-counter
+            if (counter == 3)       // if they have 3, it will be alive, no matter its old status
             {
-                koor_feld_neu[n]=1;
+                koor_feld_neu[n]=1; // the new field has the letter 1 on the cells position (alive)
             }
-            else if (counter == 2)
+            else if (counter == 2)  // if the cell has 2 neighbors its old status will remain (dead ones stays dead, alive ones stay alive)
             {
-                koor_feld_neu[n] = koor_feld_alt[n];
+                koor_feld_neu[n] = koor_feld_alt[n];        // cell in the new position gets the same value
             }
             else
             {
-                koor_feld_neu[n] = 0;
+                koor_feld_neu[n] = 0;       // if a cell has neither 2 or 3 neighbors its gonna die or stay dead
             }
-            counter = 0;
+            counter = 0;        // resets the neighbor counter for the next cell
 
         }
-        else if (n == (neue_breite - 1)) // ecke rechts oben
+        else if (n == (neue_breite - 1)) // top right corner
         {
 
             for (j = (neue_breite*neue_hoehe-2); j < (neue_breite*neue_hoehe); j++)  //
@@ -193,7 +195,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 counter +=1;
             }
 
-            // alive or dead
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -208,7 +210,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             }
             counter = 0;
         }
-        else if (n == (neue_hoehe*neue_breite-neue_breite)) // ecke links unten
+        else if (n == (neue_hoehe*neue_breite-neue_breite)) // bottom left corner
         {
 
             if (koor_feld_alt[neue_hoehe*neue_breite-neue_breite-1] == 1)
@@ -242,7 +244,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 }
             }
 
-            // alive or dead
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -257,7 +259,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             }
             counter = 0;
         }
-        else if (n == (neue_breite*neue_hoehe - 1)) // ecke rechts unten
+        else if (n == (neue_breite*neue_hoehe - 1)) // bottom right corner
         {
 
             for (j = (n-neue_breite-1); j < (n-neue_breite+1); j++)
@@ -291,7 +293,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 counter +=1;
             }
 
-            // dead or alive
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -306,7 +308,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             }
             counter = 0;
         }
-        else if (n>0 && n<(neue_breite-1)) // obere Zeile (ohne Ecken)
+        else if (n>0 && n<(neue_breite-1)) // top line without the corners
         {
 
             for (j = (neue_breite*neue_hoehe-neue_breite+n-1); j < (neue_breite*neue_hoehe-neue_breite+n+2); j++) // für samuel: war beim ersten n-2 bis n+1 habs auf n-1 bis n+2 geändert
@@ -332,7 +334,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 }
             }
 
-            // dead or alive
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -347,7 +349,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             }
             counter = 0;
         }
-        else if (n % (neue_breite) == 0 && n != 0 && n!= (neue_hoehe*neue_breite-neue_breite)) // linke Seite (ohne Ecken)
+        else if (n % (neue_breite) == 0 && n != 0 && n!= (neue_hoehe*neue_breite-neue_breite)) // left side, without corners
         {
 
             if (koor_feld_alt[n-1] == 1)
@@ -377,7 +379,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 counter +=1;
             }
 
-            // dead or alive
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -392,7 +394,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             }
             counter = 0;
         }
-        else if (n % (neue_breite) == (neue_breite-1) && n!=(neue_breite - 1) && n!=(neue_breite*neue_hoehe - 1)) // rechte Seite (ohne Ecken)
+        else if (n % (neue_breite) == (neue_breite-1) && n!=(neue_breite - 1) && n!=(neue_breite*neue_hoehe - 1)) // right side, without corners
         {
 
             for (j = (n-neue_breite-1); j < (n-neue_breite+2); j++)
@@ -422,7 +424,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 counter +=1;
             }
 
-            // dead or alive
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -437,7 +439,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             }
             counter = 0;
         }
-        else if (n> neue_breite*neue_hoehe-neue_breite && n<neue_hoehe*neue_breite) // untere Zeile (ohne Ecken)
+        else if (n> neue_breite*neue_hoehe-neue_breite && n<neue_hoehe*neue_breite) // bottom line
         {
 
             for (j = (n-neue_breite-1); j < (n-neue_breite+2); j++)
@@ -463,7 +465,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                 }
             }
 
-            // dead or alive
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -478,7 +480,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             }
             counter = 0;
         }
-        else // Alle Felder außer Randfelder
+        else // every other cell
         {
 
             for (j = (n-neue_breite-1); j < (n-neue_breite+2); j++)
@@ -503,7 +505,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
                     counter += 1;
                 }
             }
-
+            // new status
             if (counter == 3)
             {
                 koor_feld_neu[n]=1;
@@ -519,25 +521,25 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             counter = 0;
         }
     }
-    delete koor_feld_alt;
-    koor_feld_alt = koor_feld_neu;
+    delete koor_feld_alt;           // the big for-loop is now finished and the old field can be deleted
+    koor_feld_alt = koor_feld_neu;  // the new field becomes the old one, so it can be deleted in the next iteration again (l. 107)
 }
 
-int zellulaerer_automat::zeige_feld()
+int zellulaerer_automat::zeige_feld()   // will print the field as a string
 {
-    int n,m;
+    int n,m;    // initialises 2 variables for the loops down below
 
-    for (n=0; n<neue_hoehe; n++)
+    for (n=0; n<neue_hoehe; n++)        // iterates over the height
     {
-        for (m=0; m<neue_breite; m++)
+        for (m=0; m<neue_breite; m++)   // iterates over the width
         {
-            cout << koor_feld_alt[(n*(neue_breite) +m)]<< " ";
+            cout << koor_feld_alt[(n*(neue_breite) +m)]<< " ";  // prints the current cell
         }
-    cout << endl;
+    cout << endl;       // ends the line for a "matrix like view"
     }
 }
 
-zellulaerer_automat::~zellulaerer_automat()
+zellulaerer_automat::~zellulaerer_automat() // deconstructor
 {
 
 }
