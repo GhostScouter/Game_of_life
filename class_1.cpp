@@ -110,7 +110,6 @@ int zellulaerer_automat::evolution()
             }
             for (j = (neue_hoehe*neue_breite-neue_breite); j < ((neue_hoehe*neue_breite-neue_breite)+2); j++) // oben und rechts oben von "ecke links oben" -> ecke links unten und rechts von ecke links unten
             {
-                zeige_feld();
                 if (koor_feld_alt[j] == 1)
                 {
                     counter ++;
@@ -512,7 +511,6 @@ int zellulaerer_automat::evolution()
             counter = 0;
         }
     }
-    cout << "hello?\n";
     delete koor_feld_alt;
     koor_feld_alt = koor_feld_neu;
 }
