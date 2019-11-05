@@ -528,6 +528,7 @@ int zellulaerer_automat::zeige_feld()
     cout << endl;
     }
 }
+
 zellulaerer_automat::~zellulaerer_automat()
 {
 
