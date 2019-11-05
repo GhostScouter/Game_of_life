@@ -13,10 +13,10 @@ int main()
     test.setze_feld();
     test.zeige_feld();
     test.veraendere_feld();
+    cout << "Ergebnis veraendertes Feld\n";
     test.zeige_feld();
-    cout << "got here\n";
     test.evolution();
-    cout << "got here too\n";
+    cout << "Ergebnis Evolution\n";
     test.zeige_feld();
 
     int static_array[HEIGHT][WIDTH];
