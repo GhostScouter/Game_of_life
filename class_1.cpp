@@ -79,7 +79,6 @@ int zellulaerer_automat::veraendere_feld()
     cout << "Welches Feld wollen sie ändern?\n";
 
     cin >> height_change >> width_change;
-
     koor_feld_alt[height_change*neue_breite+width_change] = (koor_feld_alt[height_change*neue_breite+width_change] +1) % 2;
 }
 
@@ -92,48 +91,56 @@ int zellulaerer_automat::evolution()
     delete koor_feld_neu;
     koor_feld_neu = new int[(neue_hoehe*neue_breite)];
 
-    for (n=0; n<(neue_hoehe*neue_breite); n++)
+    for (n=0; n<(neue_hoehe*neue_breite); n++) // start der kontrolle, wie Zellen auf Evolution reagieren
     {
+        cout << "jeder evolution\n";
         if (n == 0) // ecke links oben
         {
             zellen_status = koor_feld_alt[n];
 
-            if (koor_feld_alt[neue_hoehe*neue_breite-1] == 1)
+            if (koor_feld_alt[neue_hoehe*neue_breite-1] == 1) // links oben von "ecke links oben" -> ecke rechts unten
             {
                 counter += 1;
             }
-            for (j = (neue_hoehe*neue_breite-neue_breite); j < ((neue_hoehe*neue_breite-neue_breite)+2); j++)
+            cout<< "1";
+            for (j = (neue_hoehe*neue_breite-neue_breite); j < ((neue_hoehe*neue_breite-neue_breite)+2); j++) // oben und rechts oben von "ecke links oben" -> ecke links unten und rechts von ecke links unten
+            {
+                if (koor_feld_alt[j] == 1)
+                {
+                    counter += 1;
+                }
+                cout << "endless!\n";
+            j = 0;
+            }
+            cout<<"2";
+            if (koor_feld_alt[neue_breite-1] == 1)  // links von "Ecke links oben" -> Ecke rechts oben
+            {
+                counter += 1;
+            }
+            cout<<"3";
+            if (koor_feld_alt[1] == 1) // rechts von "Ecke links oben"
+            {
+                counter += 1;
+            }
+            cout<<"4";
+            if (koor_feld_alt[2*neue_breite-1] == 1) // links unten von "Ecke links oben" -> unter Ecke rechts oben
+            {
+                counter += 1;
+            }
+            cout<<"5";
+            for (j = (neue_breite); j < (neue_breite+2); j++) // unter rechts unter "Ecke links oben"
             {
                 if (koor_feld_alt[j] == 1)
                 {
                     counter += 1;
                 }
             j = 0;
-            }
-            if (koor_feld_alt[neue_breite-1] == 1)
-            {
-                counter += 1;
-            }
-            if (koor_feld_alt[1] == 1)
-            {
-                counter += 1;
-            }
-            if (koor_feld_alt[2*neue_breite-1] == 1)
-            {
-                counter += 1;
-            }
-            for (j = (neue_breite); j < (neue_breite+2); j++)
-            {
-                if (koor_feld_alt[j] == 1)
-                {
-                    counter += 1;
-                }
-            j = 0;
-            }
+            }    
+            cout<< "6";
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -144,12 +151,13 @@ int zellulaerer_automat::evolution()
                 koor_feld_neu[n] = 0;
             }
             counter = 0;
+
         }
         else if (n == (neue_breite - 1)) // ecke rechts oben
         {
             zellen_status = koor_feld_alt[n];
 
-            for (j = (neue_breite*neue_hoehe-2); j < (neue_breite*neue_hoehe); j++)
+            for (j = (neue_breite*neue_hoehe-2); j < (neue_breite*neue_hoehe); j++)  //
             {
                 if (koor_feld_alt[j] == 1)
                 {
@@ -161,10 +169,31 @@ int zellulaerer_automat::evolution()
             {
                 counter += 1;
             }
+            if (koor_feld_alt[neue_breite-2] == 1)
+            {
+                counter +=1;
+            }
+            if (koor_feld_alt[0] == 1)
+            {
+                counter +=1;
+            }
+            for (j = (neue_breite*2-2); j < (neue_breite*2); j++)
+            {
+                if (koor_feld_alt[j] == 1)
+                {
+                    counter += 1;
+                }
+            j = 0;
+            }
+            if (koor_feld_alt[neue_breite] == 1)
+            {
+                counter +=1;
+            }
+
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -182,7 +211,7 @@ int zellulaerer_automat::evolution()
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -200,7 +229,7 @@ int zellulaerer_automat::evolution()
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -218,7 +247,7 @@ int zellulaerer_automat::evolution()
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -236,7 +265,7 @@ int zellulaerer_automat::evolution()
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -254,7 +283,7 @@ int zellulaerer_automat::evolution()
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -272,7 +301,7 @@ int zellulaerer_automat::evolution()
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -290,7 +319,7 @@ int zellulaerer_automat::evolution()
 
             if (counter == 3)
             {
-                koor_feld_alt[n]=1;
+                koor_feld_neu[n]=1;
             }
             else if (counter == 2)
             {
@@ -303,6 +332,9 @@ int zellulaerer_automat::evolution()
             counter = 0;
         }
     }
+    cout << "hello?\n";
+    delete koor_feld_alt;
+    koor_feld_alt = koor_feld_neu;
 }
 
 int zellulaerer_automat::zeige_feld()

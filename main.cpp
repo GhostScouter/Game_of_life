@@ -14,6 +14,10 @@ int main()
     test.zeige_feld();
     test.veraendere_feld();
     test.zeige_feld();
+    cout << "got here\n";
+    test.evolution();
+    cout << "got here too\n";
+    test.zeige_feld();
 
     int static_array[HEIGHT][WIDTH];
     int *dynamic_d = new int[900];
