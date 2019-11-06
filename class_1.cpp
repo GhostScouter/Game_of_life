@@ -539,6 +539,34 @@ int zellulaerer_automat::zeige_feld()   // will print the field as a string
     }
 }
 
+int zellulaerer_automat::export_field()
+{
+    ofstream myfile;
+    myfile.open ("export.txt");
+
+    int i = 0;
+    myfile << neue_hoehe << endl;
+    myfile << neue_breite << endl;
+
+    while (true)
+    {
+        myfile << koor_feld_neu[i];
+        i ++;
+        if ((i%neue_breite) == 0)
+        {
+            myfile << endl;
+        }
+        else if (i == (neue_hoehe*neue_breite)-1)
+        {
+            myfile << koor_feld_neu[(neue_hoehe*neue_breite)-1];
+            break;
+        }
+    }
+    myfile.close();
+
+}
+
+
 zellulaerer_automat::~zellulaerer_automat() // deconstructor
 {
 

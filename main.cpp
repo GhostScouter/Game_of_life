@@ -32,6 +32,7 @@ int main()
         cout << "Statischen in Dynamischen Array übertragen(3)" << endl;
         cout << "Dynamischen Array ausgeben(4)" << endl;
         cout << "Beenden(5)" << endl;
+        cout << "Exportieren (6)" << endl;
         cin >> while_input;                 // user input for the menu
 
         system("CLS");                      // clears the console so it doesnt get filled up
@@ -59,6 +60,10 @@ int main()
         else if (while_input == 5)              // the menu ending choice
         {
             while_tf = false;                   // sets the while-loop variable to false, so it ends
+        }
+        else if (while_input == 6)
+        {
+            test.export_field();
         }
         else
         {

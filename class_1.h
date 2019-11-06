@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <ios>
 #ifndef CLASS_1_H
 #define CLASS_1_H
 
@@ -25,6 +27,7 @@ public:     // public funtions to operate with
     int veraendere_feld();  // specific cell value changing
     int evolution();        // the main part =)
     int zeige_feld();       // prints the array
+    int export_field();
 
     ~zellulaerer_automat(); // deconstructor
 
