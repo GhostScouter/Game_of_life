@@ -18,6 +18,3 @@ int dynamic_array_func(int static_a[HEIGHT][WIDTH], int dynamic_d[900]) // takes
    }
    return 0;
 }
-
-
-

@@ -19,8 +19,8 @@ int main()
     cout << "Ergebnis Evolution\n"; // for dialogue purposes
     test.zeige_feld();              // shows the field again
 
-    int static_array[HEIGHT][WIDTH];// initialises a static array with given parameters
-    int *dynamic_d = new int[900];  // initialises a dynamic array with given parameters
+    int static_array[HEIGHT][WIDTH];// creates a static array with given parameters
+    int *dynamic_d = new int[900];  // creates a dynamic array with given parameters
 
     int while_input;                // menu input by the user
     bool while_tf = true;           // while-loop variable initialise

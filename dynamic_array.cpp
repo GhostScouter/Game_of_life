@@ -19,6 +19,3 @@ int dynamic_array_out(int dynamic_d[900])   // will print the dynamic array, is 
    }
    return 0;
 }
-
-
-

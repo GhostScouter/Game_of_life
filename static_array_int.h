@@ -12,12 +12,10 @@
 
 
 
-int static_array_func(int static_a[HEIGHT][WIDTH]);
+int static_array_func(int static_a[HEIGHT][WIDTH]);     // defines the functions with their arguments
 int static_array_out(int static_a[HEIGHT][WIDTH]);
 int dynamic_array_func(int static_a[HEIGHT][WIDTH], int dynamic_d[900]);
 int dynamic_array_out(int dynamic_d[900]);
-
-
 
 
 #endif // STATIC_ARRAY_INT_H

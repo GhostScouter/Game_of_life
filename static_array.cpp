@@ -17,6 +17,3 @@ int static_array_func(int static_a[HEIGHT][WIDTH])      // fills a static array 
     }
     return 0;
 }
-
-
-
