@@ -566,6 +566,10 @@ int zellulaerer_automat::export_field()
 
 }
 
+int zellulaerer_automat::import_field()
+{
+
+}
 
 zellulaerer_automat::~zellulaerer_automat() // deconstructor
 {

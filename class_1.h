@@ -28,6 +28,7 @@ public:     // public funtions to operate with
     int evolution();        // the main part =)
     int zeige_feld();       // prints the array
     int export_field();
+    int import_field();
 
     ~zellulaerer_automat(); // deconstructor
 

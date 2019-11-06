@@ -9,14 +9,22 @@ int main()
 {
 
     zellulaerer_automat test;       // creates one instance of the class "zellulärer_automat"
+    cout << "Would you like to import an automaton? Yes (1) or No (0)";
+    int import_decision;
+    cin >> import_decision;
+
+    if (import_decision == 1)
+    {
+        test.import_field();
+    }
     test.feldgroese();              // calls the function, that asks the user for the automaton size
     test.setze_feld();              // calls the function, that allows the user to set each cells value
     test.zeige_feld();              // calls the function, that shows the field
     test.veraendere_feld();         // calls the function, allows the user to change specific cells
-    cout << "Ergebnis veraendertes Feld\n";     // for dialogue purposes
+    cout << "Ergebnis veraendertes Feld\n";
     test.zeige_feld();              // shows the field again
     test.evolution();               // starts the evolution process
-    cout << "Ergebnis Evolution\n"; // for dialogue purposes
+    cout << "Ergebnis Evolution\n";
     test.zeige_feld();              // shows the field again
 
     int static_array[HEIGHT][WIDTH];// creates a static array with given parameters
