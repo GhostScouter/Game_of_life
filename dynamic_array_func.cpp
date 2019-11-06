@@ -13,7 +13,7 @@ int dynamic_array_func(int static_a[HEIGHT][WIDTH], int dynamic_d[900]) // takes
        for (m=0;m<WIDTH;m++)    // runs through the static array's width
        {
            dynamic_d[dynamic_counter] = static_a[n][m];     // copied the element in the static array into the dynamic array at the position given by the counter
-           dynamic_counter += 1;            // increases the counter to iterate through the dynamic array
+           dynamic_counter += 1;                            // increases the counter to iterate through the dynamic array
        }
    }
    return 0;

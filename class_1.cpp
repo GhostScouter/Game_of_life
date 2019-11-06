@@ -26,9 +26,9 @@ int zellulaerer_automat::feldgroese()
         {
             while (true)
             {
-                cout << "neue Hoehe\n";     // dialogue about new width
+                cout << "neue Hoehe\n";
                 cin >> neue_hoehe;          // users new width
-                cout << "neue breite\n";    // dialogue about new height
+                cout << "neue breite\n";
                 cin >> neue_breite;         // users new height
                 if (neue_hoehe > 0 && neue_breite > 0) // quick check on input
                 {
@@ -43,12 +43,12 @@ int zellulaerer_automat::feldgroese()
         else if (input_feldaenderung == 2)  // if the user does not want to change the field size
         {
             while_groese = true;            // exits the while-loop (l.22)
-            neue_hoehe = 30;                // sets default size values of 30x30
+            neue_hoehe = 30;                // sets default size values to 30x30
             neue_breite = 30;               //                "
         }
         else                                // if the user entered something else than 1 or 2 (l.24)
         {
-            cout << "Ungueltige Eingabe\n"; // tells the user he did something stupid
+            cout << "Ungueltige Eingabe\n"; // tells the user they did something stupid
         }
     }
 }
@@ -78,7 +78,7 @@ int zellulaerer_automat::veraendere_feld()      // allows the user to change a s
     int width_change;                           //                    "
     int feld_aenderung = 1;
 
-    cout << "Welches Feld wollen sie ändern?\n";        // dialogue about which cell to change
+    cout << "Welches Feld wollen sie ändern?\n";
 
     cin >> height_change >> width_change;               // both inputs
     koor_feld_alt[height_change*neue_breite+width_change] = (koor_feld_alt[height_change*neue_breite+width_change] +1) % 2;
@@ -86,13 +86,13 @@ int zellulaerer_automat::veraendere_feld()      // allows the user to change a s
 
 
 
-    while (feld_aenderung == 1)     // will loop the question
+    while (feld_aenderung == 1)     // asks the user if they like to change another cell until they decide otherwise
     {
-        cout << "Wollen sie Felder ändern?(Ja = 1, Nein = 0)\n";        // asks the user if they like to change another cell
+        cout << "Wollen sie Felder ändern?(Ja = 1, Nein = 0)\n";
         cin >> feld_aenderung;                                          // awaits the user's input
         if (feld_aenderung == 1)                                        // if they like to
         {
-            cout << "Welches Feld wollen sie ändern?\n";                // asks which cell they like to change
+            cout << "Welches Feld wollen sie ändern?\n";
             cin >> height_change >> width_change;                       // awaits the inputs
             koor_feld_alt[height_change*neue_breite+width_change] = (koor_feld_alt[height_change*neue_breite+width_change] +1) % 2;     // <=> l.85
         }

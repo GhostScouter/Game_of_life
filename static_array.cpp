@@ -6,7 +6,7 @@ int static_array_func(int static_a[HEIGHT][WIDTH])      // fills a static array 
 {
     int n,m;        // initialises 2 variables to iterate with down below
 
-    srand (time(NULL));         // part of the random function, which secures that our random number are truly random
+    srand (time(NULL));         // part of the random function, which secures that our random number are truly "random", and non dependent on runtime
 
     for (n=0;n<HEIGHT;n++)      // iterates through the height
     {
