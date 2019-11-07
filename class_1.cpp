@@ -82,7 +82,7 @@ int zellulaerer_automat::veraendere_feld()      // allows the user to change a s
 
     while (feld_aenderung == 1)     // asks the user if they like to change another cell until they decide otherwise
     {
-        cout << "Wollen sie Felder ändern?(Ja = 1, Nein = 0)\n";
+        cout << "Wollen sie Felder aendern?(Ja = 1, Nein = 0)\n";
         cin >> feld_aenderung;                                          // awaits the user's input
         if (feld_aenderung == 1)                                        // if they like to
         {
@@ -100,7 +100,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
     int n, j;                                   // initiates 2 variables for loop purposes
     int counter = 0;                            // this variable counts the amount of neighbours, it gets resetted for each cell (i.e. l. 159)
 
-    delete koor_feld_neu;                                   // deletes the new field, only useful after the first evolution, else this is empty
+    //delete koor_feld_neu;                                   // deletes the new field, only useful after the first evolution, else this is empty
     koor_feld_neu = new char[(neue_hoehe*neue_breite)];      // creates a new field with the size parameters, taken in l. 30 or l.46
 
     for (n=0; n<(neue_hoehe*neue_breite); n++) // starts the evolution, runs through the entire array, the following if-statements are executed for each cell
@@ -671,7 +671,6 @@ int zellulaerer_automat::import_field()
             break;
         }
     }
-    zeige_feld();
 }
 
 zellulaerer_automat::~zellulaerer_automat() // deconstructor

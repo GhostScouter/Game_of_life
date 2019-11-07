@@ -17,15 +17,33 @@ int main()
     {
         test.import_field();
     }
-    test.feldgroese();              // calls the function, that asks the user for the automaton size
-    test.setze_feld();              // calls the function, that allows the user to set each cells value
+    else
+    {
+        test.feldgroese();              // calls the function, that asks the user for the automaton size
+        test.setze_feld();              // calls the function, that allows the user to set each cells value
+    }
     test.zeige_feld();              // calls the function, that shows the field
     test.veraendere_feld();         // calls the function, allows the user to change specific cells
     cout << "Ergebnis veraendertes Feld\n";
     test.zeige_feld();              // shows the field again
-    test.evolution();               // starts the evolution process
-    cout << "Ergebnis Evolution\n";
-    test.zeige_feld();              // shows the field again
+
+
+    bool evolution_while_var = true;
+    int user_while_input;
+    while (evolution_while_var)
+    {
+        test.evolution();               // starts the evolution process
+        cout << "Ergebnis Evolution\n";
+        test.zeige_feld();              // shows the field again
+
+        cout <<" Noch einmal? ja(1) / nein(0)";
+        cin >> user_while_input;
+        if (user_while_input == 0)
+        {
+            evolution_while_var = false;
+        }
+    }
+
 
     int static_array[HEIGHT][WIDTH];// creates a static array with given parameters
     int *dynamic_d = new int[900];  // creates a dynamic array with given parameters
@@ -37,7 +55,7 @@ int main()
     {
         cout << "Statischen Array erstellen(1)" << endl;
         cout << "Statischen Array ausgeben(2)" << endl;
-        cout << "Statischen in Dynamischen Array übertragen(3)" << endl;
+        cout << "Statischen in Dynamischen Array uebertragen(3)" << endl;
         cout << "Dynamischen Array ausgeben(4)" << endl;
         cout << "Beenden(5)" << endl;
         cout << "Exportieren (6)" << endl;
