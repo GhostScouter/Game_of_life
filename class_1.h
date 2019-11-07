@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <ios>
+#include <sstream>
+#include <string>
 #ifndef CLASS_1_H
 #define CLASS_1_H
 

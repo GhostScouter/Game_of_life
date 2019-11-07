@@ -15,7 +15,7 @@ int zellulaerer_automat::feldgroese()
     bool while_groese = false;      // while-loop break variable
     int input_feldaenderung;        // user input variable defninition (l.24)
 
-    cout << "Wenn sie keine Aenderungen an der Feldgroese vernehmen wollen, wird ein Standartfeld der groese"<< groese<<"verwendet.\n";
+    cout << "Wenn sie keine Aenderungen an der Feldgroese vernehmen wollen, wird ein Standartfeld der Groese "<< groese<<" verwendet.\n";
     cout << "Hoehe und Breite veraendern(1)\n";
     cout << "nichts verandern(2)\n";
 
@@ -563,12 +563,56 @@ int zellulaerer_automat::export_field()
         }
     }
     myfile.close();
-
 }
 
 int zellulaerer_automat::import_field()
 {
+    string s_neue_hoehe;
+    string s_neue_breite;
+    ifstream automat_input ("beispieldatei_cellularautomaton.txt");
+    getline(automat_input, s_neue_hoehe);
+    getline(automat_input, s_neue_breite);
 
+    cout << s_neue_hoehe;
+    cout << "\n";
+    cout << s_neue_breite;
+    cout << "\n";
+
+    stringstream cast_neue_hoehe(s_neue_hoehe);
+    cast_neue_hoehe >> neue_hoehe;
+
+    stringstream cast_neue_breite(s_neue_breite);
+    cast_neue_breite >> neue_breite;
+
+    char c;
+    int n = 0;
+    koor_feld_alt = new int[neue_hoehe*neue_breite];
+    while (true)
+    {
+        automat_input.get(c);
+
+        if (c == 'o') // c != '*' , != 42 , != 111
+        {
+            koor_feld_alt[n] = 0;
+        }
+        else if (c == '*')      // korrekt
+        {
+            koor_feld_alt[n] = 1;
+        }
+        else
+        {
+            koor_feld_alt[n] = NULL;
+        }
+
+        n++;
+        if (n == (neue_hoehe*neue_breite)-1)
+        {
+            cout <<"beende loop\n";
+            automat_input.close();
+            break;
+        }
+    }
+    zeige_feld();
 }
 
 zellulaerer_automat::~zellulaerer_automat() // deconstructor
