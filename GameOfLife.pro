@@ -15,6 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Aufgabe_1ab.cpp \
+        Aufgabe_1cde.cpp \
         class_1.cpp \
         dynamic_array.cpp \
         dynamic_array_func.cpp \
