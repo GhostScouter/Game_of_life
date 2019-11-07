@@ -3,6 +3,7 @@
 #include <ios>
 #ifndef CLASS_1_H
 #define CLASS_1_H
+#define CONVERT_ASCII 48
 
 
 
@@ -10,8 +11,10 @@ class zellulaerer_automat // name of the class which will be key for our program
 {
 private:                // defining various variables for class-wide use
 
-    int *koor_feld_alt; // this is the field on which the evolution will be applied to
-    int *koor_feld_neu; // this is the output field
+    char *koor_feld_alt; // this is the field on which the evolution will be applied to
+    char *koor_feld_neu; // this is the output field
+
+    std::string koor_feld_out;
 
     int groese;         // standard array size for evol.automat, only for dialogue purposes
     int neue_hoehe;     // heigth of our 2-d array
