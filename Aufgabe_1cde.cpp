@@ -5,8 +5,10 @@ using namespace std;
 int aufgabe_1cde()
 {
     zellulaerer_automat test;       // creates one instance of the class "zellulärer_automat"
-    cout << "Would you like to import an automaton? Yes (1) or No (0)";
+
     int import_decision;
+
+    cout << "Would you like to import an automaton? Yes (1) or No (0)";
     cin >> import_decision;
 
     if (import_decision == 1)
@@ -19,15 +21,16 @@ int aufgabe_1cde()
         test.setze_feld();              // calls the function, that allows the user to set each cells value
     }
     test.zeige_feld();              // calls the function, that shows the field
-    test.veraendere_feld();         // calls the function, allows the user to change specific cells
-    cout << "Ergebnis veraendertes Feld\n";
-    test.zeige_feld();              // shows the field again
-
 
     bool evolution_while_var = true;
     int user_while_input;
+
     while (evolution_while_var)
     {
+        test.veraendere_feld();         // calls the function, allows the user to change specific cells
+        cout << "Ergebnis veraendertes Feld\n";
+        test.zeige_feld();              // shows the field again
+
         test.evolution();               // starts the evolution process
         cout << "Ergebnis Evolution\n";
         test.zeige_feld();              // shows the field again

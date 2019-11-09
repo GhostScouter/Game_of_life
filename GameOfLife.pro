@@ -32,3 +32,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     class_1.h \
     static_array_int.h
+
+FORMS += \
+    tabwidget.ui

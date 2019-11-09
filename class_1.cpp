@@ -4,8 +4,8 @@ using namespace std;
 
 zellulaerer_automat::zellulaerer_automat()
 {
-    char *koor_feld_neu = new char[900];
-    char *koor_feld_alt = new char[900];
+    koor_feld_neu = new char[900];
+    koor_feld_alt = new char[900];
 }
 
 int zellulaerer_automat::feldgroese()
@@ -35,8 +35,10 @@ int zellulaerer_automat::feldgroese()
                     break;                  // exits while-loop (l.27)
                 }
             }
-            //delete koor_feld_alt;           // deletes the old field with old size
+            delete koor_feld_alt;           // deletes the old field with old size
             koor_feld_alt = new char[(neue_hoehe*neue_breite)];  // initiates new one with new size
+            delete koor_feld_neu;                                   // deletes the new field, only useful after the first evolution, else this is empty
+            koor_feld_neu = new char[(neue_hoehe*neue_breite)];      // creates a new field with the size parameters, taken in l. 30 or l.46
 
             while_groese = true;            // exits while-loop (l.22)
         }
@@ -99,9 +101,6 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
 {
     int n, j;                                   // initiates 2 variables for loop purposes
     int counter = 0;                            // this variable counts the amount of neighbours, it gets resetted for each cell (i.e. l. 159)
-
-    //delete koor_feld_neu;                                   // deletes the new field, only useful after the first evolution, else this is empty
-    koor_feld_neu = new char[(neue_hoehe*neue_breite)];      // creates a new field with the size parameters, taken in l. 30 or l.46
 
     for (n=0; n<(neue_hoehe*neue_breite); n++) // starts the evolution, runs through the entire array, the following if-statements are executed for each cell
     {
@@ -581,7 +580,7 @@ int zellulaerer_automat::evolution()            // goes through all cells, check
             counter = 0;
         }
     }
-    delete koor_feld_alt;           // the big for-loop is now finished and the old field can be deleted
+    //delete koor_feld_alt;           // the big for-loop is now finished and the old field can be deleted
     koor_feld_alt = koor_feld_neu;  // the new field becomes the old one, so it can be deleted in the next iteration again (l. 107)
 }
 

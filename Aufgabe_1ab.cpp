@@ -20,7 +20,7 @@ int aufgabe_1ab()
         cout << "Beenden(5)" << endl;
         cin >> while_input;                 // user input for the menu
 
-        system("CLS");                      // clears the console so it doesnt get filled up
+        // system("CLS");                      // clears the console so it doesnt get filled up
 
         if (while_input == 1)               // static array creation
         {
